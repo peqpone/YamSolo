@@ -20,6 +20,7 @@ module.exports = {
       {
         'cases': { 'kebabCase': true, 'pascalCase': true },
       }
-    ]
+    ],
+    'unicorn/no-array-for-each': 'off',
   },
 }
