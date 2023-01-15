@@ -1,0 +1,14 @@
+{
+  // Extend your base config so you don't have to redefine your compilerOptions
+  "extends": "./tsconfig.json",
+  "include": [
+    // Include all files in the project
+    "./**/*",
+    // By default, the `include` glob pattern doesn't match `.vue` files, so we add it explicitly
+    "./**/*.vue"
+  ],
+  "compilerOptions": {
+    // Include `.js` & `.jsx` extensions
+    "allowJs": true
+  }
+}
