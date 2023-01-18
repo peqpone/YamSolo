@@ -1,20 +1,8 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const player = {
-  name: '',
-};
-
-const state = reactive({
-  players: [{ ...player }],
-});
-
-const addPlayer = ():void => {
-  state.players.push({ ...player });
-};
 const startGame = ():void => {
   router.push({ name: 'game' });
 };
@@ -22,12 +10,35 @@ const startGame = ():void => {
 </script>
 
 <template>
-  <div id="players-customization">
-    <h2>Welcome</h2>
-    <div v-for="(player, key) in state.players" :key="key">
-      <input aria-label="Name for player {{key + 1}}" type="text" v-model="player.name" />
-    </div>
-    <a @click="addPlayer" @keydown="addPlayer">add</a>
-    <a @click="startGame" @keydown="startGame">start</a>
+  <div id="splash-screen">
+    <a @click="startGame" @keydown="startGame" class="button-play">
+      <img src="../graphics/play.svg" alt="Start" />
+    </a>
   </div>
+  <div id="splash-screen-background" />
 </template>
+
+<style lang="scss" scoped>
+#splash-screen {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#splash-screen-background {
+  position: absolute;
+  z-index: -1;
+  height: 70vh;
+  background: url(/src/graphics/logo-gold.svg) no-repeat top left;
+  background-size: cover;
+  width: 70%;
+  bottom: 0;
+  right: 0;
+}
+.button-play {
+  text-align: center;
+  img {
+    width: 20%;
+  }
+}
+</style>
