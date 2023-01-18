@@ -8,7 +8,7 @@ const properties = defineProps({
 </script>
 
 <template>
-  <img :alt="dieValue" :src="`/dice/classic/${properties.dieValue}.svg`" />
+  <img :alt="dieValue.toString()" :src="`/dice/classic/${properties.dieValue}.svg`" />
 </template>
 
 <style scoped>
