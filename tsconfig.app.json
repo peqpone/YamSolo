@@ -2,6 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
     "env.d.ts",
+    "types/*.d.ts",
     "src/**/*",
     "src/**/*.vue"
   ],
@@ -10,7 +11,7 @@
   ],
   "compilerOptions": {
     "composite": true,
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "paths": {
       "@/*": ["./src/*"]
     }

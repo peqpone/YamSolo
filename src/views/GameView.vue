@@ -2,9 +2,7 @@
   <div id="game-container">
     <TheScoreContainer />
     <TheDiceContainer />
-    <div class="button-area">
-      <h1>Button</h1>
-    </div>
+    <TheRollButton />
     <div class="total-area">
       <span>totals</span>
     </div>
@@ -22,4 +20,5 @@
 <script setup lang="ts">
 import TheScoreContainer from '@/components/TheScoreContainer.vue';
 import TheDiceContainer from '@/components/TheDiceContainer.vue';
+import TheRollButton from '@/components/TheRollButton.vue';
 </script>

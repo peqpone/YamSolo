@@ -11,6 +11,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('src', import.meta.url)),
     },
   },
+  assetsInclude: ['src/graphics/dice/**/*.svg'],
   test: {
     // deps: { inline: ['@vue', 'vue', 'jsdom'] },
     coverage: {
