@@ -21,6 +21,7 @@ export default defineConfig({
       clean: true,
       all: true,
     },
+    environment: 'jsdom',
     root: 'src',
   },
 });

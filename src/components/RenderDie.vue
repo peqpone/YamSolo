@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
-
 const properties = defineProps({
   dieValue: { type: Number, required: true },
 });

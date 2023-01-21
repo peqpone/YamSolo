@@ -9,17 +9,17 @@ export default class {
 
   diceSum:number;
 
-  threeOfAKind:number;
+  threeOfAKind:undefined | number;
 
-  fourOfAKind:number;
+  fourOfAKind:undefined | number;
 
-  fullHouse: 0 | 25;
+  fullHouse:undefined | 25;
 
-  yams: 0 | 50;
+  yams:undefined | 50;
 
-  smallStraight:0 | 30;
+  smallStraight:undefined | 30;
 
-  largeStraight:0 | 40;
+  largeStraight:undefined | 40;
 
   constructor(dice:Dice) {
     this.dice = dice;
@@ -40,7 +40,7 @@ export default class {
   }
 
   addDice():number {
-    return this.dice.reduce((a, b) => a + b);
+    return this.dice.reduce((a, b) => a + b, 0);
   }
 
   removeDuplicates(dice:Dice = this.dice):Dice {
@@ -76,44 +76,44 @@ export default class {
       });
   }
 
-  getThreeOfAKind():number {
+  getThreeOfAKind():undefined | number {
     return Object.values(this.diceOccurrences).includes(3)
       ? this.diceSum
-      : 0;
+      : undefined;
   }
 
-  getFourOfAKind():number {
+  getFourOfAKind():undefined | number {
     return Object.values(this.diceOccurrences).includes(4)
       ? this.diceSum
-      : 0;
+      : undefined;
   }
 
-  getFullHouse():0 | 25 {
+  getFullHouse():undefined | 25 {
     return Object.values(this.diceOccurrences).includes(3)
     && Object.values(this.diceOccurrences).includes(2)
       ? 25
-      : 0;
+      : undefined;
   }
 
-  getYams():0 | 50 {
+  getYams():undefined | 50 {
     return Object.values(this.diceOccurrences).includes(5)
       ? 50
-      : 0;
+      : undefined;
   }
 
-  getSmallStraight():0 | 30 {
+  getSmallStraight():undefined | 30 {
     const isSmallStraight = this.lookForStraights();
     return isSmallStraight.every(Boolean)
         && isSmallStraight.length >= 4
       ? 30
-      : 0;
+      : undefined;
   }
 
-  getLargeStraight():0 | 40 {
+  getLargeStraight():undefined | 40 {
     const isLargeStraight = this.lookForStraights();
     return isLargeStraight.every(Boolean)
         && isLargeStraight.length === 5
       ? 40
-      : 0;
+      : undefined;
   }
 }

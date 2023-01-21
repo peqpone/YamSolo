@@ -3,9 +3,7 @@
     <TheScoreContainer />
     <TheDiceContainer />
     <TheRollButton />
-    <div class="total-area">
-      <span>totals</span>
-    </div>
+    <TheTotalsContainer />
   </div>
 </template>
 
@@ -21,4 +19,5 @@
 import TheScoreContainer from '@/components/TheScoreContainer.vue';
 import TheDiceContainer from '@/components/TheDiceContainer.vue';
 import TheRollButton from '@/components/TheRollButton.vue';
+import TheTotalsContainer from '@/views/TheTotalsContainer.vue';
 </script>

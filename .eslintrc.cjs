@@ -15,6 +15,7 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
+    'no-console': 'off',
     'unicorn/filename-case': [
       'error',
       {
@@ -22,5 +23,6 @@ module.exports = {
       }
     ],
     'unicorn/no-array-for-each': 'off',
+    'unicorn/no-array-reduce': 'off',
   },
 }

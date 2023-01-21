@@ -61,7 +61,7 @@ describe('Scores.ts', () => {
   describe('isFourOfAKind', () => {
     it('Should return false if not Four Of A Kind', () => {
       const scores = new Scores([1, 3, 6, 4, 4]);
-      expect(scores.fourOfAKind).toBe(0);
+      expect(scores.fourOfAKind).toBe(undefined);
     });
     it('Should return true if Four Of A Kind', () => {
       const scores = new Scores([4, 3, 4, 4, 4]);
@@ -71,7 +71,7 @@ describe('Scores.ts', () => {
   describe('isFullHouse', () => {
     it('Should return false if not Full House', () => {
       const scores = new Scores([1, 3, 6, 4, 4]);
-      expect(scores.fullHouse).toBe(0);
+      expect(scores.fullHouse).toBe(undefined);
     });
     it('Should return true if Full House', () => {
       const scores = new Scores([4, 3, 4, 4, 3]);
@@ -81,7 +81,7 @@ describe('Scores.ts', () => {
   describe('isYams', () => {
     it('Should return false if not Yams', () => {
       const scores = new Scores([1, 3, 6, 4, 4]);
-      expect(scores.yams).toBe(0);
+      expect(scores.yams).toBe(undefined);
     });
     it('Should return true if Yams', () => {
       const scores = new Scores([4, 4, 4, 4, 4]);
@@ -91,7 +91,7 @@ describe('Scores.ts', () => {
   describe('isSmallStraight', () => {
     it('Should return false if not Small Straight', () => {
       const scores = new Scores([1, 3, 6, 4, 4]);
-      expect(scores.smallStraight).toBe(0);
+      expect(scores.smallStraight).toBe(undefined);
     });
     it('Should return true if Small Straight', () => {
       const scores = new Scores([4, 2, 5, 5, 3]);
@@ -101,7 +101,7 @@ describe('Scores.ts', () => {
   describe('isLargeStraight', () => {
     it('Should return false if not Large Straight', () => {
       const scores = new Scores([1, 3, 6, 4, 4]);
-      expect(scores.largeStraight).toBe(0);
+      expect(scores.largeStraight).toBe(undefined);
     });
     it('Should return true if Large Straight', () => {
       const scores = new Scores([4, 2, 5, 6, 3]);

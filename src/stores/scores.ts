@@ -1,86 +1,65 @@
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
-import useDiceStore from '@/stores/dice';
+
+const getCleanState = ():Scores => ({
+  1: undefined as unknown as number,
+  2: undefined as unknown as number,
+  3: undefined as unknown as number,
+  4: undefined as unknown as number,
+  5: undefined as unknown as number,
+  6: undefined as unknown as number,
+  threeOfAKind: undefined as unknown as number,
+  fourOfAKind: undefined as unknown as number,
+  fullHouse: undefined as unknown as number,
+  smallStraight: undefined as unknown as number,
+  largeStraight: undefined as unknown as number,
+  yams: undefined as unknown as number,
+  chance: undefined as unknown as number,
+});
 
 export default defineStore(
   'scores',
   () => {
-    const diceStore = useDiceStore();
-    const dice = computed(() => diceStore.dice);
-    const diceOccurrences = computed(() => diceStore.diceOccurrences);
-    const uniqueDice = computed(() => diceStore.uniqueDice);
-    function addDice():number {
-      return dice.value.reduce((a, b) => a + b);
+    const scores = ref<Scores>(getCleanState());
+
+    const diceScores = computed(() => [
+      scores.value[1],
+      scores.value[2],
+      scores.value[3],
+      scores.value[4],
+      scores.value[5],
+      scores.value[6],
+    ]);
+    function saveScore(scoreName:keyof Scores, value:number):void {
+      scores.value[scoreName] = value;
     }
 
-    const diceSum = computed<number>(() => addDice());
-
-    function getThreeOfAKind():number {
-      return Object.values(diceOccurrences.value).includes(3)
-        ? diceSum.value
-        : 0;
-    }
-
-    function getFourOfAKind():number {
-      return Object.values(diceOccurrences.value).includes(4)
-        ? diceSum.value
-        : 0;
-    }
-
-    function getFullHouse():0 | 25 {
-      return Object.values(diceOccurrences.value).includes(3)
-          && Object.values(diceOccurrences.value).includes(2)
-        ? 25
-        : 0;
-    }
-
-    function getYams():0 | 50 {
-      return Object.values(diceOccurrences.value).includes(5)
-        ? 50
-        : 0;
-    }
-
-    function lookForStraights():Array<boolean> {
-      return uniqueDice.value
-        .map((die, index, originalSortedDice) => {
-          if (index !== originalSortedDice.length - 1) {
-            return die + 1 === originalSortedDice[index + 1];
-          }
-          return true;
+    const sumOfDice = computed<number>(() => {
+      let result:number = 0;
+      diceScores.value
+        .map((die) => die || 0)
+        .forEach((die) => {
+          result += die;
         });
-    }
+      return result;
+    });
 
-    function getSmallStraight():0 | 30 {
-      const isSmallStraight = lookForStraights();
-      return isSmallStraight.every(Boolean)
-          && isSmallStraight.length >= 4
-        ? 30
-        : 0;
-    }
+    const bonus = computed<number>(() => (sumOfDice.value >= 63 ? 35 : 0));
 
-    function getLargeStraight():0 | 40 {
-      const isLargeStraight = lookForStraights();
-      return isLargeStraight.every(Boolean)
-          && isLargeStraight.length === 5
-        ? 40
-        : 0;
-    }
+    const grandTotal = computed(() => Object.values(scores.value)
+      .filter((value) => value !== undefined)
+      .reduce((a, b) => a + b, 0));
 
-    const threeOfAKind = computed<number>(() => getThreeOfAKind());
-    const fourOfAKind = computed<number>(() => getFourOfAKind());
-    const fullHouse = computed<0 | 25>(() => getFullHouse());
-    const smallStraight = computed<0 | 30>(() => getSmallStraight());
-    const largeStraight = computed<0 | 40>(() => getLargeStraight());
-    const yams = computed<0 | 50>(() => getYams());
+    function reset():void {
+      console.debug('Reset Scores');
+      scores.value = getCleanState();
+    }
 
     return {
-      diceSum,
-      threeOfAKind,
-      fourOfAKind,
-      fullHouse,
-      smallStraight,
-      largeStraight,
-      yams,
+      scores, bonus, saveScore, sumOfDice, reset, diceScores, grandTotal,
     };
+  },
+  {
+    persist: true,
   },
 );

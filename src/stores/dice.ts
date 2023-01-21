@@ -1,10 +1,11 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
+const getCleanState = () => [];
 export default defineStore(
   'dice',
   () => {
-    const dice = ref<Dice>([]);
+    const dice = ref<Dice>(getCleanState());
     function saveDice(diceToSave:Dice):void {
       dice.value = diceToSave;
     }
@@ -25,11 +26,27 @@ export default defineStore(
     const uniqueDice = computed<Dice>(() => removeDuplicates());
     const diceOccurrences = computed<DiceOccurrences>(() => countOccurrences());
 
+    function getTotal(diceToCompute:number):number {
+      const totals:DiceOccurrences = {};
+      Object.entries(diceOccurrences.value)
+        .forEach(([index, value]) => {
+          const numberIndex = Number(index);
+          totals[numberIndex] = numberIndex * value;
+        });
+      return totals[diceToCompute];
+    }
+    function reset():void {
+      console.debug('Reset Dice');
+      dice.value = getCleanState();
+    }
+
     return {
       dice,
       saveDice,
+      getTotal,
       uniqueDice,
       diceOccurrences,
+      reset,
     };
   },
   {
