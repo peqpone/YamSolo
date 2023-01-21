@@ -12,7 +12,13 @@ const gameStore = useGameStore();
 
 const scores = computed(() => new GetScores(diceStore.dice));
 
-const scoresToRender = computed(() => ({
+type ScoresToRender = Record<string, {
+  value: number | undefined,
+  label: string,
+  scoreName: keyof Scores,
+}>;
+
+const scoresToRender = computed<ScoresToRender>(() => ({
   threeOfAKind: {
     value: scoresStore.scores.threeOfAKind === undefined
       ? scores.value.threeOfAKind
@@ -64,7 +70,12 @@ const scoresToRender = computed(() => ({
   },
 }));
 
-const diceToRender = computed(() => [
+type DiceToRender = Array<{
+  label: keyof Scores,
+  value: number,
+}>;
+
+const diceToRender = computed<DiceToRender>(() => [
   {
     label: 1,
     value: scoresStore.scores[1] === undefined
@@ -132,12 +143,12 @@ function saveScore(value: number, scoreName: keyof Scores):void {
       <div
         v-for="{ label, value } in diceToRender"
         :key="label"
-        @click="saveScore((value || 0) * label, label)"
-        @keydown="saveScore((value || 0) * label, label)"
+        @click="saveScore((value || 0) * Number(label), label)"
+        @keydown="saveScore((value || 0) * Number(label), label)"
         :class="{ saved: getSavedValue(label) !== undefined }"
       >
         <div v-if="value !== undefined" class="count-dice">{{ value }}</div>
-        <img :class="{ active: value !== undefined }" :alt="label" :src="`/dice/classic/${label}.svg`" />
+        <img :class="{ active: value !== undefined }" :alt="label.toString()" :src="`/dice/classic/${label}.svg`" />
       </div>
     </div>
     <div class="text-score-container">
@@ -150,7 +161,7 @@ function saveScore(value: number, scoreName: keyof Scores):void {
         <span
           :class="{ active: value !== undefined, saved: getSavedValue(scoreName) !== undefined }"
         >
-          {{ getRenderedScore(label, value) }}
+          {{ getRenderedScore(label, Number(label)) }}
         </span>
       </div>
     </div>
