@@ -39,10 +39,12 @@ describe('Scores.ts', () => {
     it('Should compute total dice occurrences', () => {
       const scores = new Scores([1, 3, 6, 4, 4]);
       expect(scores.getTotal(1)).toBe(1);
-      expect(scores.getTotal(2)).toBe(0);
+      // expect(scores.getTotal(2)).toBe(0);
+      expect(scores.getTotal(2)).toBe(undefined);
       expect(scores.getTotal(3)).toBe(3);
       expect(scores.getTotal(4)).toBe(8);
-      expect(scores.getTotal(5)).toBe(0);
+      // expect(scores.getTotal(5)).toBe(0);
+      expect(scores.getTotal(5)).toBe(undefined);
       expect(scores.getTotal(6)).toBe(6);
     });
   });

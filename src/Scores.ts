@@ -9,6 +9,18 @@ export default class {
 
   diceSum:number;
 
+  1:number;
+
+  2:number;
+
+  3:number;
+
+  4:number;
+
+  5:number;
+
+  6:number;
+
   threeOfAKind:undefined | number;
 
   fourOfAKind:undefined | number;
@@ -27,6 +39,12 @@ export default class {
     this.uniqueDice = this.removeDuplicates();
     this.diceSum = this.addDice();
     this.diceOccurrences = this.countOccurrences();
+    this[1] = this.getTotal(1);
+    this[2] = this.getTotal(2);
+    this[3] = this.getTotal(3);
+    this[4] = this.getTotal(4);
+    this[5] = this.getTotal(5);
+    this[6] = this.getTotal(6);
     this.threeOfAKind = this.getThreeOfAKind();
     this.fourOfAKind = this.getFourOfAKind();
     this.fullHouse = this.getFullHouse();
@@ -63,7 +81,7 @@ export default class {
         const numberIndex = Number(index);
         totals[numberIndex] = numberIndex * value;
       });
-    return totals[diceToCompute] || 0;
+    return totals[diceToCompute];
   }
 
   lookForStraights():Array<boolean> {

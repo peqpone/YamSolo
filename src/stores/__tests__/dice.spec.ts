@@ -29,16 +29,4 @@ describe('scores.ts', () => {
       });
     });
   });
-  describe('getTotal', () => {
-    it('Should compute total dice occurrences', () => {
-      const diceStore = useDiceStore();
-      diceStore.$patch({ dice: [1, 3, 6, 4, 4] });
-      expect(diceStore.getTotal(1)).toBe(1);
-      expect(diceStore.getTotal(2)).toBe(undefined);
-      expect(diceStore.getTotal(3)).toBe(3);
-      expect(diceStore.getTotal(4)).toBe(8);
-      expect(diceStore.getTotal(5)).toBe(undefined);
-      expect(diceStore.getTotal(6)).toBe(6);
-    });
-  });
 });

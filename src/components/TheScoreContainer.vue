@@ -18,46 +18,46 @@ type ScoresToRender = Record<string, {
   scoreName: keyof Scores,
 }>;
 
+function getSavedValue(scoreName: keyof Scores):number | undefined {
+  return scoresStore.scores[scoreName];
+}
+
+const getDefinedScore = (scoreName: string | number) => {
+  const savedValue = getSavedValue(scoreName as keyof Scores);
+  return savedValue === undefined
+  // @ts-ignore
+    ? scores.value[scoreName]
+    : savedValue;
+};
+
 const scoresToRender = computed<ScoresToRender>(() => ({
   threeOfAKind: {
-    value: scoresStore.scores.threeOfAKind === undefined
-      ? scores.value.threeOfAKind
-      : scoresStore.scores.threeOfAKind,
+    value: getDefinedScore('threeOfAKind'),
     label: '3 of a K',
     scoreName: 'threeOfAKind',
   },
   fourOfAKind: {
-    value: scoresStore.scores.fourOfAKind === undefined
-      ? scores.value.fourOfAKind
-      : scoresStore.scores.fourOfAKind,
+    value: getDefinedScore('fourOfAKind'),
     label: '4 of a K',
     scoreName: 'fourOfAKind',
   },
   fullHouse: {
-    value: scoresStore.scores.fullHouse === undefined
-      ? scores.value.fullHouse
-      : scoresStore.scores.fullHouse,
+    value: getDefinedScore('fullHouse'),
     label: 'fullHouse',
     scoreName: 'fullHouse',
   },
   smallStraight: {
-    value: scoresStore.scores.smallStraight === undefined
-      ? scores.value.smallStraight
-      : scoresStore.scores.smallStraight,
+    value: getDefinedScore('smallStraight'),
     label: 'straight',
     scoreName: 'smallStraight',
   },
   largeStraight: {
-    value: scoresStore.scores.largeStraight === undefined
-      ? scores.value.largeStraight
-      : scoresStore.scores.largeStraight,
+    value: getDefinedScore('largeStraight'),
     label: 'STRAIGHT',
     scoreName: 'largeStraight',
   },
   yams: {
-    value: scoresStore.scores.yams === undefined
-      ? scores.value.yams
-      : scoresStore.scores.yams,
+    value: getDefinedScore('yams'),
     label: 'yams',
     scoreName: 'yams',
   },
@@ -78,50 +78,37 @@ type DiceToRender = Array<{
 const diceToRender = computed<DiceToRender>(() => [
   {
     label: 1,
-    value: scoresStore.scores[1] === undefined
-      ? diceStore.getTotal(1)
-      : scoresStore.scores[1],
+    value: getDefinedScore(1),
   },
   {
     label: 2,
-    value: scoresStore.scores[2] === undefined
-      ? diceStore.getTotal(2)
-      : scoresStore.scores[2],
+    value: getDefinedScore(2),
   },
   {
     label: 3,
-    value: scoresStore.scores[3] === undefined
-      ? diceStore.getTotal(3)
-      : scoresStore.scores[3],
+    value: getDefinedScore(3),
   },
   {
     label: 4,
-    value: scoresStore.scores[4] === undefined
-      ? diceStore.getTotal(4)
-      : scoresStore.scores[4],
+    value: getDefinedScore(4),
   },
   {
     label: 5,
-    value: scoresStore.scores[5] === undefined
-      ? diceStore.getTotal(5)
-      : scoresStore.scores[5],
+    value: getDefinedScore(5),
   },
   {
     label: 6,
-    value: scoresStore.scores[6] === undefined
-      ? diceStore.getTotal(6)
-      : scoresStore.scores[6],
+    value: getDefinedScore(6),
   },
 ]);
 
 const canSaveZero = computed(() => !gameStore.canRoll);
 
-function getRenderedScore(label:string, value:number) {
-  return value !== undefined || canSaveZero.value ? `${label} ${value || 0}` : label;
-}
-
-function getSavedValue(scoreName: keyof Scores):number | undefined {
-  return scoresStore.scores[scoreName];
+function getRenderedScore(label:string, value:number | undefined) {
+  if (value === undefined) {
+    return canSaveZero.value ? `${label} 0` : label;
+  }
+  return `${label} ${value}`;
 }
 
 function saveScore(value: number, scoreName: keyof Scores):void {
@@ -143,8 +130,8 @@ function saveScore(value: number, scoreName: keyof Scores):void {
       <div
         v-for="{ label, value } in diceToRender"
         :key="label"
-        @click="saveScore((value || 0) * Number(label), label)"
-        @keydown="saveScore((value || 0) * Number(label), label)"
+        @click="saveScore((value || 0), label)"
+        @keydown="saveScore((value || 0), label)"
         :class="{ saved: getSavedValue(label) !== undefined }"
       >
         <div v-if="value !== undefined" class="count-dice">{{ value }}</div>
@@ -161,7 +148,7 @@ function saveScore(value: number, scoreName: keyof Scores):void {
         <span
           :class="{ active: value !== undefined, saved: getSavedValue(scoreName) !== undefined }"
         >
-          {{ getRenderedScore(label, Number(label)) }}
+          {{ getRenderedScore(label, value) }}
         </span>
       </div>
     </div>
