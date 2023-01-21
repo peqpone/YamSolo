@@ -13,6 +13,7 @@ export default defineConfig({
   },
   assetsInclude: ['src/graphics/dice/**/*.svg'],
   test: {
+    globals: true,
     // deps: { inline: ['@vue', 'vue', 'jsdom'] },
     coverage: {
       reporter: ['html', 'text-summary'],

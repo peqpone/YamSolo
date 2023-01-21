@@ -9,8 +9,8 @@ import useScoresStore from '../../stores/scores';
 import useDiceStore from '../../stores/dice';
 
 describe('TheScoreContainer', () => {
-  let scoresStore:ReturnType<typeof useScoresStore>;
-  let diceStore:ReturnType<typeof useDiceStore>;
+  let scoresStore;
+  let diceStore;
   beforeAll(() => {
     setActivePinia(createPinia());
   });
