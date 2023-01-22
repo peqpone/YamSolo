@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 const properties = defineProps({
   dieValue: { type: Number, required: true },
 });
@@ -6,7 +7,7 @@ const properties = defineProps({
 </script>
 
 <template>
-  <img :alt="dieValue.toString()" :src="`/dice/classic/${properties.dieValue}.svg`" />
+  <img :alt="properties.dieValue.toString()" :src="`/dice/classic/${properties.dieValue}.svg`" />
 </template>
 
 <style scoped>

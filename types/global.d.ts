@@ -1,12 +1,12 @@
 type Dice<T = number> = Array<T>;
 type DiceOccurrences = { [x:number]: number };
 type Scores = {
-  1: number,
-  2: number,
-  3: number,
-  4: number,
-  5: number,
-  6: number,
+  die1: number,
+  die2: number,
+  die3: number,
+  die4: number,
+  die5: number,
+  die6: number,
   threeOfAKind: number,
   fourOfAKind: number,
   fullHouse: number,

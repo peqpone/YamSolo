@@ -9,17 +9,19 @@ export default class {
 
   diceSum:number;
 
-  1:number;
+  chance:number | undefined;
 
-  2:number;
+  die1:number;
 
-  3:number;
+  die2:number;
 
-  4:number;
+  die3:number;
 
-  5:number;
+  die4:number;
 
-  6:number;
+  die5:number;
+
+  die6:number;
 
   threeOfAKind:undefined | number;
 
@@ -38,13 +40,14 @@ export default class {
     this.sortedDice = this.sortDice();
     this.uniqueDice = this.removeDuplicates();
     this.diceSum = this.addDice();
+    this.chance = this.getChance();
     this.diceOccurrences = this.countOccurrences();
-    this[1] = this.getTotal(1);
-    this[2] = this.getTotal(2);
-    this[3] = this.getTotal(3);
-    this[4] = this.getTotal(4);
-    this[5] = this.getTotal(5);
-    this[6] = this.getTotal(6);
+    this.die1 = this.getTotal(1);
+    this.die2 = this.getTotal(2);
+    this.die3 = this.getTotal(3);
+    this.die4 = this.getTotal(4);
+    this.die5 = this.getTotal(5);
+    this.die6 = this.getTotal(6);
     this.threeOfAKind = this.getThreeOfAKind();
     this.fourOfAKind = this.getFourOfAKind();
     this.fullHouse = this.getFullHouse();
@@ -133,5 +136,9 @@ export default class {
         && isLargeStraight.length === 5
       ? 40
       : undefined;
+  }
+
+  getChance():number | undefined {
+    return this.diceSum || undefined;
   }
 }

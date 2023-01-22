@@ -2,12 +2,12 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
 const getCleanState = ():Scores => ({
-  1: undefined as unknown as number,
-  2: undefined as unknown as number,
-  3: undefined as unknown as number,
-  4: undefined as unknown as number,
-  5: undefined as unknown as number,
-  6: undefined as unknown as number,
+  die1: undefined as unknown as number,
+  die2: undefined as unknown as number,
+  die3: undefined as unknown as number,
+  die4: undefined as unknown as number,
+  die5: undefined as unknown as number,
+  die6: undefined as unknown as number,
   threeOfAKind: undefined as unknown as number,
   fourOfAKind: undefined as unknown as number,
   fullHouse: undefined as unknown as number,
@@ -23,12 +23,12 @@ export default defineStore(
     const scores = ref<Scores>(getCleanState());
 
     const diceScores = computed(() => [
-      scores.value[1],
-      scores.value[2],
-      scores.value[3],
-      scores.value[4],
-      scores.value[5],
-      scores.value[6],
+      scores.value.die1,
+      scores.value.die2,
+      scores.value.die3,
+      scores.value.die4,
+      scores.value.die5,
+      scores.value.die6,
     ]);
     function saveScore(scoreName:keyof Scores, value:number):void {
       scores.value[scoreName] = value;

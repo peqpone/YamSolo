@@ -1,5 +1,5 @@
 import {
-  describe, it, expect, beforeAll, beforeEach,
+  describe, it, expect, beforeAll, beforeEach, vi,
 } from 'vitest';
 
 import { mount } from '@vue/test-utils';
@@ -13,76 +13,90 @@ describe('TheScoreContainer', () => {
   let diceStore;
   beforeAll(() => {
     setActivePinia(createPinia());
+    vi.spyOn(console, 'debug');
   });
   beforeEach(() => {
     scoresStore = useScoresStore();
     diceStore = useDiceStore();
     scoresStore.reset();
     diceStore.reset();
+    console.debug.mockClear();
   });
   describe('diceToRender', () => {
     it('should have initial state', () => {
       const wrapper = mount(TheScoreContainer);
       expect(wrapper.vm.diceToRender).toStrictEqual([
         {
+          label: '1',
+          scoreName: 'die1',
           value: undefined,
-          label: 1,
         },
         {
+          label: '2',
+          scoreName: 'die2',
           value: undefined,
-          label: 2,
         },
         {
+          label: '3',
+          scoreName: 'die3',
           value: undefined,
-          label: 3,
         },
         {
+          label: '4',
+          scoreName: 'die4',
           value: undefined,
-          label: 4,
         },
         {
+          label: '5',
+          scoreName: 'die5',
           value: undefined,
-          label: 5,
         },
         {
+          label: '6',
+          scoreName: 'die6',
           value: undefined,
-          label: 6,
         },
       ]);
     });
     it('should take values from the store', () => {
       scoresStore.$patch({
         scores: {
-          1: 1,
-          2: 4,
-          4: 4,
+          die1: 1,
+          die2: 4,
+          die4: 4,
           threeOfAKind: 40,
         },
       });
       const wrapper = mount(TheScoreContainer);
       expect(wrapper.vm.diceToRender).toStrictEqual([
         {
-          label: 1,
+          label: '1',
+          scoreName: 'die1',
           value: 1,
         },
         {
-          label: 2,
+          label: '2',
+          scoreName: 'die2',
           value: 4,
         },
         {
-          label: 3,
+          label: '3',
+          scoreName: 'die3',
           value: undefined,
         },
         {
-          label: 4,
+          label: '4',
+          scoreName: 'die4',
           value: 4,
         },
         {
-          label: 5,
+          label: '5',
+          scoreName: 'die5',
           value: undefined,
         },
         {
-          label: 6,
+          label: '6',
+          scoreName: 'die6',
           value: undefined,
         },
       ]);
@@ -90,9 +104,9 @@ describe('TheScoreContainer', () => {
     it('should take values from the store and current dice', () => {
       scoresStore.$patch({
         scores: {
-          1: 1,
-          2: 4,
-          4: 4,
+          die1: 1,
+          die2: 4,
+          die4: 4,
           threeOfAKind: 40,
         },
       });
@@ -100,34 +114,67 @@ describe('TheScoreContainer', () => {
       const wrapper = mount(TheScoreContainer);
       expect(wrapper.vm.diceToRender).toStrictEqual([
         {
-          label: 1,
+          label: '1',
+          scoreName: 'die1',
           value: 1,
         },
         {
-          label: 2,
+          label: '2',
+          scoreName: 'die2',
           value: 4,
         },
         {
-          label: 3,
+          label: '3',
+          scoreName: 'die3',
           value: 9,
         },
         {
-          label: 4,
+          label: '4',
+          scoreName: 'die4',
           value: 4,
         },
         {
-          label: 5,
+          label: '5',
+          scoreName: 'die5',
           value: undefined,
         },
         {
-          label: 6,
+          label: '6',
+          scoreName: 'die6',
           value: undefined,
         },
       ]);
     });
   });
-  describe.skip('saveScore', () => {
-    // TODO should not save a score that has been saved as ZERO
+  describe('saveScore', () => {
+    beforeEach(() => {
+      scoresStore.$patch({
+        scores: {
+          die1: 1,
+          die2: 4,
+          die4: 4,
+          threeOfAKind: 0,
+        },
+      });
+    });
+    it('Should not save already stored scores', () => {
+      const wrapper = mount(TheScoreContainer);
+      wrapper.vm.saveScore(3, 'die1');
+      expect(console.debug).toHaveBeenCalledWith('A score for die1 has already been saved (1)');
+      expect(scoresStore.scores.die1).toBe(1);
+    });
+    it('Should not save already stored scores even if zero (non-reg)', () => {
+      const wrapper = mount(TheScoreContainer);
+      wrapper.vm.saveScore(40, 'threeOfAKind');
+      expect(console.debug).toHaveBeenCalledWith('A score for threeOfAKind has already been saved (0)');
+      expect(scoresStore.scores.threeOfAKind).toBe(0);
+    });
+    it('Should save a new score', () => {
+      const wrapper = mount(TheScoreContainer);
+      wrapper.vm.saveScore(40, 'fourOfAKind');
+      expect(console.debug).not.toHaveBeenCalledWith('A score for fourOfAKind has already been saved (undefined)');
+      expect(scoresStore.scores.fourOfAKind).toBe(40);
+    });
   });
   describe('scoresToRender', () => {
     it('should have initial state', () => {
@@ -136,7 +183,7 @@ describe('TheScoreContainer', () => {
         chance: {
           label: 'chance',
           scoreName: 'chance',
-          value: 0, // TODO fix me, I should be undefined here
+          value: undefined,
         },
         fourOfAKind: {
           label: '4 of a K',

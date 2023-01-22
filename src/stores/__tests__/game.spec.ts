@@ -26,12 +26,12 @@ describe('store/game', () => {
     it('Should return false if some score is undefined', () => {
       scoresStore.$patch({
         scores: {
-          1: 3,
-          2: 6,
-          3: undefined,
-          4: undefined,
-          5: 10,
-          6: 12,
+          die1: 3,
+          die2: 6,
+          die3: undefined,
+          die4: undefined,
+          die5: 10,
+          die6: 12,
           chance: 12,
           threeOfAKind: 12,
           fourOfAKind: 12,
@@ -47,12 +47,12 @@ describe('store/game', () => {
     it('Should return true if all scores are defined', () => {
       scoresStore.$patch({
         scores: {
-          1: 3,
-          2: 6,
-          3: 0,
-          4: 0,
-          5: 10,
-          6: 12,
+          die1: 3,
+          die2: 6,
+          die3: 0,
+          die4: 0,
+          die5: 10,
+          die6: 12,
           chance: 12,
           threeOfAKind: 12,
           fourOfAKind: 12,
@@ -79,12 +79,12 @@ describe('store/game', () => {
       gameStore.$patch({ game: { currentAttempt: 2 } });
       scoresStore.$patch({
         scores: {
-          1: 3,
-          2: 6,
-          3: 0,
-          4: 0,
-          5: 10,
-          6: 12,
+          die1: 3,
+          die2: 6,
+          die3: 0,
+          die4: 0,
+          die5: 10,
+          die6: 12,
           chance: 12,
           threeOfAKind: 12,
           fourOfAKind: 12,

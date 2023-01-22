@@ -12,95 +12,62 @@ const gameStore = useGameStore();
 
 const scores = computed(() => new GetScores(diceStore.dice));
 
-type ScoresToRender = Record<string, {
-  value: number | undefined,
+const diceScores: Array<{ scoreName: Partial<keyof Scores>, label: string }> = [
+  { scoreName: 'die1', label: '1' },
+  { scoreName: 'die2', label: '2' },
+  { scoreName: 'die3', label: '3' },
+  { scoreName: 'die4', label: '4' },
+  { scoreName: 'die5', label: '5' },
+  { scoreName: 'die6', label: '6' },
+];
+const otherScores: Array<{ scoreName: Partial<keyof Scores>, label: string }> = [
+  { scoreName: 'threeOfAKind', label: '3 of a K' },
+  { scoreName: 'fourOfAKind', label: '4 of a K' },
+  { scoreName: 'fullHouse', label: 'fullHouse' },
+  { scoreName: 'smallStraight', label: 'straight' },
+  { scoreName: 'largeStraight', label: 'STRAIGHT' },
+  { scoreName: 'yams', label: 'yams' },
+  { scoreName: 'chance', label: 'chance' },
+];
+
+type ScoreUnit = {
   label: string,
   scoreName: keyof Scores,
-}>;
+  value: number | undefined,
+};
+type ScoresToRender = Record<Partial<keyof Scores>, ScoreUnit>;
+
+type DiceToRender = Array<ScoreUnit>;
 
 function getSavedValue(scoreName: keyof Scores):number | undefined {
   return scoresStore.scores[scoreName];
 }
 
-const getDefinedScore = (scoreName: string | number) => {
-  const savedValue = getSavedValue(scoreName as keyof Scores);
+const getDefinedScore = (scoreName: keyof Scores):number | undefined => {
+  const savedValue = getSavedValue(scoreName);
   return savedValue === undefined
-  // @ts-ignore
     ? scores.value[scoreName]
     : savedValue;
 };
 
-const scoresToRender = computed<ScoresToRender>(() => ({
-  threeOfAKind: {
-    value: getDefinedScore('threeOfAKind'),
-    label: '3 of a K',
-    scoreName: 'threeOfAKind',
-  },
-  fourOfAKind: {
-    value: getDefinedScore('fourOfAKind'),
-    label: '4 of a K',
-    scoreName: 'fourOfAKind',
-  },
-  fullHouse: {
-    value: getDefinedScore('fullHouse'),
-    label: 'fullHouse',
-    scoreName: 'fullHouse',
-  },
-  smallStraight: {
-    value: getDefinedScore('smallStraight'),
-    label: 'straight',
-    scoreName: 'smallStraight',
-  },
-  largeStraight: {
-    value: getDefinedScore('largeStraight'),
-    label: 'STRAIGHT',
-    scoreName: 'largeStraight',
-  },
-  yams: {
-    value: getDefinedScore('yams'),
-    label: 'yams',
-    scoreName: 'yams',
-  },
-  chance: {
-    value: scoresStore.scores.chance === undefined
-      ? scores.value.diceSum
-      : scoresStore.scores.chance,
-    label: 'chance',
-    scoreName: 'chance',
-  },
-}));
+const scoresToRender = computed<ScoresToRender>(() => {
+  const initialValue = {} as ScoresToRender;
+  return otherScores.reduce((accumulator, { scoreName, label }) => {
+    accumulator[scoreName] = {
+      value: getDefinedScore(scoreName),
+      label,
+      scoreName,
+    };
+    return accumulator;
+  }, initialValue);
+});
 
-type DiceToRender = Array<{
-  label: keyof Scores,
-  value: number,
-}>;
-
-const diceToRender = computed<DiceToRender>(() => [
-  {
-    label: 1,
-    value: getDefinedScore(1),
-  },
-  {
-    label: 2,
-    value: getDefinedScore(2),
-  },
-  {
-    label: 3,
-    value: getDefinedScore(3),
-  },
-  {
-    label: 4,
-    value: getDefinedScore(4),
-  },
-  {
-    label: 5,
-    value: getDefinedScore(5),
-  },
-  {
-    label: 6,
-    value: getDefinedScore(6),
-  },
-]);
+const diceToRender = computed<DiceToRender>(() => diceScores
+  .map(({ scoreName, label }) => ({
+    label,
+    scoreName,
+    value: getDefinedScore(scoreName),
+  })));
 
 const canSaveZero = computed(() => !gameStore.canRoll);
 
@@ -128,14 +95,14 @@ function saveScore(value: number, scoreName: keyof Scores):void {
   <div class="score-area">
     <div class="dice-container">
       <div
-        v-for="{ label, value } in diceToRender"
-        :key="label"
-        @click="saveScore((value || 0), label)"
-        @keydown="saveScore((value || 0), label)"
-        :class="{ saved: getSavedValue(label) !== undefined }"
+        v-for="{ scoreName, value, label } in diceToRender"
+        :key="scoreName"
+        @click="saveScore((value || 0), scoreName)"
+        @keydown="saveScore((value || 0), scoreName)"
+        :class="{ saved: getSavedValue(scoreName) !== undefined }"
       >
         <div v-if="value !== undefined" class="count-dice">{{ value }}</div>
-        <img :class="{ active: value !== undefined }" :alt="label.toString()" :src="`/dice/classic/${label}.svg`" />
+        <img :class="{ active: value !== undefined }" :alt="label" :src="`/dice/classic/${label}.svg`" />
       </div>
     </div>
     <div class="text-score-container">

@@ -14,12 +14,12 @@ describe('store/scores', () => {
       const { scores } = scoresStore;
 
       expect(scores).toStrictEqual({
-        1: undefined,
-        2: undefined,
-        3: undefined,
-        4: undefined,
-        5: undefined,
-        6: undefined,
+        die1: undefined,
+        die2: undefined,
+        die3: undefined,
+        die4: undefined,
+        die5: undefined,
+        die6: undefined,
         chance: undefined,
         threeOfAKind: undefined,
         fourOfAKind: undefined,
@@ -36,8 +36,8 @@ describe('store/scores', () => {
       scoresStore = useScoresStore();
     });
     it('Should save dice score', () => {
-      scoresStore.saveScore(1, 6);
-      expect(scoresStore.scores[1]).toBe(6);
+      scoresStore.saveScore('die1', 6);
+      expect(scoresStore.scores.die1).toBe(6);
     });
     it('Should save other score', () => {
       scoresStore.saveScore('threeOfAKind', 40);
@@ -49,7 +49,7 @@ describe('store/scores', () => {
       const scoresStore = useScoresStore();
       scoresStore.$patch({
         scores: {
-          1: 1, 2: 4, 4: 4, threeOfAKind: 40,
+          die1: 1, die2: 4, die4: 4, threeOfAKind: 40,
         },
       });
       expect(scoresStore.diceScores).toStrictEqual([1, 4, undefined, 4, undefined, undefined]);
@@ -60,7 +60,7 @@ describe('store/scores', () => {
       const scoresStore = useScoresStore();
       scoresStore.$patch({
         scores: {
-          1: 1, 2: 4, 4: 4, threeOfAKind: 40,
+          die1: 1, die2: 4, die4: 4, threeOfAKind: 40,
         },
       });
       expect(scoresStore.sumOfDice).toBe(9);
@@ -71,7 +71,7 @@ describe('store/scores', () => {
       const scoresStore = useScoresStore();
       scoresStore.$patch({
         scores: {
-          1: 3, 2: 6, 3: 9, 4: 12, 5: 15, 6: 18, threeOfAKind: 40,
+          die1: 3, die2: 6, die3: 9, die4: 12, die5: 15, die6: 18, threeOfAKind: 40,
         },
       });
       expect(scoresStore.bonus).toBe(35);
@@ -80,7 +80,7 @@ describe('store/scores', () => {
       const scoresStore = useScoresStore();
       scoresStore.$patch({
         scores: {
-          1: 3, 2: undefined, 3: 9, 4: 12, 5: 15, 6: 18, threeOfAKind: 40,
+          die1: 3, die2: undefined, die3: 9, die4: 12, die5: 15, die6: 18, threeOfAKind: 40,
         },
       });
       expect(scoresStore.bonus).toBe(0);
@@ -91,7 +91,7 @@ describe('store/scores', () => {
       const scoresStore = useScoresStore();
       scoresStore.$patch({
         scores: {
-          1: 3, 2: 6, 3: 9, 4: 12, 5: 15, 6: 18, threeOfAKind: 40,
+          die1: 3, die2: 6, die3: 9, die4: 12, die5: 15, die6: 18, threeOfAKind: 40,
         },
       });
       expect(scoresStore.grandTotal).toBe(103);
