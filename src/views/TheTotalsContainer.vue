@@ -6,12 +6,13 @@ const scoresStore = useScoresStore();
 
 const grandTotal = computed(() => scoresStore.grandTotal);
 const bonus = computed(() => scoresStore.bonus);
+const sumOfDice = computed(() => scoresStore.sumOfDice);
 
 </script>
 
 <template>
   <div class="total-area">
-    <span>tot</span>
+    <span>tot {{ sumOfDice }}</span>
     <span>bonus {{ bonus }}</span>
     <span>total {{ grandTotal }}</span>
   </div>
