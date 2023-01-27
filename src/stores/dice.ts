@@ -1,11 +1,14 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-const getCleanState = () => [];
+const getCleanDice = () => [];
+const getCleanSavedDice = () => [];
 export default defineStore(
   'dice',
   () => {
-    const dice = ref<Dice>(getCleanState());
+    const dice = ref<Dice>(getCleanDice());
+    const savedDice = ref<SavedDice>(getCleanSavedDice());
+
     function saveDice(diceToSave:Dice):void {
       dice.value = diceToSave;
     }
@@ -23,19 +26,31 @@ export default defineStore(
         });
       return result;
     }
+
+    function addToSavedDice(index:number, value:number):void {
+      savedDice.value[index] = value;
+    }
+    function removeFromSavedDice(index:number):void {
+      savedDice.value[index] = undefined;
+    }
+
     const uniqueDice = computed<Dice>(() => removeDuplicates());
     const diceOccurrences = computed<DiceOccurrences>(() => countOccurrences());
 
     function reset():void {
       console.debug('Reset Dice');
-      dice.value = getCleanState();
+      dice.value = getCleanDice();
+      savedDice.value = getCleanSavedDice();
     }
 
     return {
       dice,
+      savedDice,
       saveDice,
       uniqueDice,
       diceOccurrences,
+      addToSavedDice,
+      removeFromSavedDice,
       reset,
     };
   },

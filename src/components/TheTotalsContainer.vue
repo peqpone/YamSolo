@@ -2,6 +2,10 @@
 import { computed } from 'vue';
 import useScoresStore from '../stores/scores';
 
+defineProps<{
+  onlyGrandTotal?: boolean
+}>();
+
 const scoresStore = useScoresStore();
 
 const grandTotal = computed(() => scoresStore.grandTotal);
@@ -11,9 +15,9 @@ const sumOfDice = computed(() => scoresStore.sumOfDice);
 </script>
 
 <template>
-  <div class="total-area">
-    <span>tot {{ sumOfDice }}</span>
-    <span>bonus {{ bonus }}</span>
+  <div class="total-area" :class="{ 'no-grid': onlyGrandTotal }">
+    <span v-if="!onlyGrandTotal">tot {{ sumOfDice }}</span>
+    <span v-if="!onlyGrandTotal">bonus {{ bonus }}</span>
     <span>total {{ grandTotal }}</span>
   </div>
 </template>
@@ -22,5 +26,8 @@ const sumOfDice = computed(() => scoresStore.sumOfDice);
 .total-area {
   display: grid;
   grid: auto/ repeat(3, 1fr);
+  &.no-grid {
+    display: block;
+  }
 }
 </style>

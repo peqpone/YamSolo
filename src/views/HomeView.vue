@@ -16,6 +16,7 @@ const startGame = ():void => {
     <a @click="startGame" @keydown="startGame" class="button-play">
       <img src="../graphics/play.svg" alt="Start" />
     </a>
+    <div>options</div>
   </div>
   <div id="splash-screen-background" />
 </template>
@@ -23,9 +24,10 @@ const startGame = ():void => {
 <style lang="scss" scoped>
 #splash-screen {
   overflow: hidden;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  text-align: center;
   align-items: center;
+  grid: 1fr / 1fr;
 }
 #splash-screen-background {
   position: absolute;

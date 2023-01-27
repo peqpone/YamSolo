@@ -19,7 +19,7 @@ describe('store/game', () => {
     it('Should have initial state', () => {
       const { game } = gameStore;
 
-      expect(game).toStrictEqual({ currentAttempt: 0 });
+      expect(game).toStrictEqual({ currentAttempt: 0, theme: 'classic' });
     });
   });
   describe('gameIsFinished', () => {

@@ -17,4 +17,6 @@ type Scores = {
 };
 type Game = {
   currentAttempt: number,
+  theme: string,
 };
+type SavedDice = Array<number | undefined>;

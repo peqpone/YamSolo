@@ -20,7 +20,7 @@ const roll = () => {
 </script>
 
 <template>
-  <div class="button-area">
+  <div class="main-cta">
     <a
       class="button"
       :class="{ disabled: !canRoll }"
@@ -31,23 +31,3 @@ const roll = () => {
     </a>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.button-area {
-  display: flex;
-  align-items: stretch;
-  text-align: center;
-  justify-content: center;
-  .button {
-    display: block;
-    width: 100%;
-    line-height: 5rem;
-    font-size: 3rem;
-    font-weight: 100;
-    &.disabled {
-      cursor: not-allowed;
-      opacity: 0.4;
-    }
-  }
-}
-</style>

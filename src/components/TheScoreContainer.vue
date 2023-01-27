@@ -5,6 +5,7 @@ import useGameStore from '@/stores/game';
 import { computed } from 'vue';
 
 import GetScores from '@/Scores';
+import RenderDie from '@/components/RenderDie.vue';
 
 const diceStore = useDiceStore();
 const scoresStore = useScoresStore();
@@ -95,14 +96,18 @@ function saveScore(value: number, scoreName: keyof Scores):void {
   <div class="score-area">
     <div class="dice-container">
       <div
-        v-for="{ scoreName, value, label } in diceToRender"
+        v-for="({ scoreName, value }, index) in diceToRender"
         :key="scoreName"
         @click="saveScore((value || 0), scoreName)"
         @keydown="saveScore((value || 0), scoreName)"
         :class="{ saved: getSavedValue(scoreName) !== undefined }"
       >
         <div v-if="value !== undefined" class="count-dice">{{ value }}</div>
-        <img :class="{ active: value !== undefined }" :alt="label" :src="`/dice/classic/${label}.svg`" />
+        <render-die
+          :class="{ active: value !== undefined }"
+          :die-value="index + 1"
+          :die-id="index"
+        />
       </div>
     </div>
     <div class="text-score-container">

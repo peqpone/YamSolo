@@ -28,3 +28,21 @@ a {
     place-items: center;
   }
 }
+
+.main-cta {
+  display: flex;
+  align-items: stretch;
+  text-align: center;
+  justify-content: center;
+  .button {
+    display: block;
+    width: 100%;
+    line-height: 5rem;
+    font-size: 3rem;
+    font-weight: 100;
+    &.disabled {
+       cursor: not-allowed;
+       opacity: 0.4;
+     }
+  }
+}

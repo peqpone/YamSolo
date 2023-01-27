@@ -7,7 +7,7 @@ import cloneDeep from 'lodash.clonedeep';
 import App from './App.vue';
 import router from './router';
 
-import './assets/main.css';
+import './assets/main.less';
 
 const app = createApp(App);
 

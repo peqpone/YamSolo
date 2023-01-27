@@ -4,6 +4,7 @@ import useScoreStore from './scores';
 
 const getCleanState = () => ({
   currentAttempt: 0,
+  theme: 'classic',
 });
 export default defineStore(
   'game',
@@ -27,6 +28,9 @@ export default defineStore(
     function resetAttempts() {
       game.value.currentAttempt = 0;
     }
+    function saveTheme(newTheme:string) {
+      game.value.theme = newTheme;
+    }
 
     function reset():void {
       console.debug('Reset Game');
@@ -35,6 +39,7 @@ export default defineStore(
 
     return {
       game,
+      saveTheme,
       increaseAttempts,
       resetAttempts,
       canRoll,
