@@ -22,6 +22,24 @@ describe('store/game', () => {
       expect(game).toStrictEqual({ currentAttempt: 0, theme: 'classic' });
     });
   });
+  describe('increaseAttempts', () => {
+    it('Should increase currentAttempt count', () => {
+      const { game } = gameStore;
+
+      gameStore.increaseAttempts();
+
+      expect(game.currentAttempt).toBe(1);
+    });
+  });
+  describe('increaseAttempts', () => {
+    it('Should save a new theme', () => {
+      const { game } = gameStore;
+
+      gameStore.saveTheme('someTheme');
+
+      expect(game.theme).toBe('someTheme');
+    });
+  });
   describe('gameIsFinished', () => {
     it('Should return false if some score is undefined', () => {
       scoresStore.$patch({
