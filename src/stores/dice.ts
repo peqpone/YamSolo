@@ -2,15 +2,19 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
 const getCleanDice = () => [];
-const getCleanSavedDice = () => [];
+const getRawDice = () => [];
 export default defineStore(
   'dice',
   () => {
-    const dice = ref<Dice>(getCleanDice());
-    const savedDice = ref<SavedDice>(getCleanSavedDice());
+    const rawDice = ref<RawDice>(getRawDice());
+    const dice = computed<Dice>(() => rawDice.value.map(({ value }) => value));
 
-    function saveDice(diceToSave:Dice):void {
-      dice.value = diceToSave;
+    function saveDice(diceToSave:RawDice):void {
+      rawDice.value = diceToSave;
+    }
+    function toggleLock(index:number):void {
+      const isCurrentlyLocked = rawDice.value[index].isLocked;
+      rawDice.value[index].isLocked = !isCurrentlyLocked;
     }
 
     const sortDice = (diceToParse:Dice = dice.value):Dice => diceToParse.sort((a, b) => a - b);
@@ -27,31 +31,23 @@ export default defineStore(
       return result;
     }
 
-    function addToSavedDice(index:number, value:number):void {
-      savedDice.value[index] = value;
-    }
-    function removeFromSavedDice(index:number):void {
-      savedDice.value[index] = undefined;
-    }
-
     const uniqueDice = computed<Dice>(() => removeDuplicates());
     const diceOccurrences = computed<DiceOccurrences>(() => countOccurrences());
 
     function reset():void {
       console.debug('Reset Dice');
-      dice.value = getCleanDice();
-      savedDice.value = getCleanSavedDice();
+      rawDice.value = getCleanDice();
+      rawDice.value = getRawDice();
     }
 
     return {
       dice,
-      savedDice,
+      rawDice,
       saveDice,
       uniqueDice,
       diceOccurrences,
-      addToSavedDice,
-      removeFromSavedDice,
       reset,
+      toggleLock,
     };
   },
   {

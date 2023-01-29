@@ -1,4 +1,7 @@
 type Dice<T = number> = Array<T>;
+type Die<T = number> = { isLocked: boolean, value: T };
+type RawDice<T = number> = Array<Die<T>>;
+
 type DiceOccurrences = { [x:number]: number };
 type Scores = {
   die1: number,
@@ -19,4 +22,3 @@ type Game = {
   currentAttempt: number,
   theme: string,
 };
-type SavedDice = Array<number | undefined>;

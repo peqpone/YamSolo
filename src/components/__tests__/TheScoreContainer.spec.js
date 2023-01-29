@@ -110,7 +110,11 @@ describe('TheScoreContainer', () => {
           threeOfAKind: 40,
         },
       });
-      diceStore.$patch({ dice: [3, 3, 3, 1, 2] });
+      diceStore.$patch({
+        rawDice: [
+          { value: 3 }, { value: 3 }, { value: 3 }, { value: 1 }, { value: 2 },
+        ],
+      });
       const wrapper = mount(TheScoreContainer);
       expect(wrapper.vm.diceToRender).toStrictEqual([
         {
@@ -244,7 +248,11 @@ describe('TheScoreContainer', () => {
           threeOfAKind: 40,
         },
       });
-      diceStore.$patch({ dice: [1, 2, 3, 4, 2] });
+      diceStore.$patch({
+        rawDice: [
+          { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 2 },
+        ],
+      });
       const wrapper = mount(TheScoreContainer);
       expect(wrapper.vm.scoresToRender).toEqual(
         expect.objectContaining({

@@ -13,8 +13,18 @@ const roll = () => {
     console.debug('Cannot roll the dice');
     return;
   }
-  const newDice = [die(), die(), die(), die(), die()];
-  diceStore.saveDice(newDice);
+  const diceToSave:Array<Die> = [];
+  // at the beginning of any attempt the store holds no dice
+  // create an array of placeholder dice to overate over
+  const emptyDice = Array
+    .from({ length: 5 })
+    .fill({ isLocked: false, value: undefined }) as Array<Die>;
+
+  const iterateOver:Array<Die> = diceStore.rawDice.length > 0 ? diceStore.rawDice : emptyDice;
+  iterateOver.forEach(({ isLocked, value }) => {
+    diceToSave.push({ isLocked, value: isLocked ? value : die() });
+  });
+  diceStore.saveDice(diceToSave);
   gameStore.increaseAttempts();
 };
 </script>
