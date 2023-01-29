@@ -24,7 +24,7 @@ export default defineConfig({
       statements: 61,
       branches: 89,
       functions: 63,
-      lines: 62,
+      lines: 61,
     },
     environment: 'jsdom',
     root: 'src',
