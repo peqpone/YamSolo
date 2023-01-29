@@ -64,8 +64,8 @@ export default class {
     return this.dice.reduce((a, b) => a + b, 0);
   }
 
-  removeDuplicates(dice:Dice = this.dice):Dice {
-    return this.sortDice([...new Set(dice)]);
+  removeDuplicates():Dice {
+    return this.sortDice([...new Set(this.dice)]);
   }
 
   countOccurrences():DiceOccurrences {
