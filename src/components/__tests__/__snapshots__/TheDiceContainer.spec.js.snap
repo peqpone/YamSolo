@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`TheDiceContainer > Integration test > should correctly mount initial state 1`] = `
+"<div class=\\"dice-area\\" data-v-1c9fb7f4=\\"\\">
+  <render-die-stub dieid=\\"0\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"\\" data-v-1c9fb7f4=\\"\\"></render-die-stub>
+  <render-die-stub dieid=\\"1\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"\\" data-v-1c9fb7f4=\\"\\"></render-die-stub>
+  <render-die-stub dieid=\\"2\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"\\" data-v-1c9fb7f4=\\"\\"></render-die-stub>
+  <render-die-stub dieid=\\"3\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"\\" data-v-1c9fb7f4=\\"\\"></render-die-stub>
+  <render-die-stub dieid=\\"4\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"\\" data-v-1c9fb7f4=\\"\\"></render-die-stub>
+</div>"
+`;
