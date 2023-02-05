@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-const getCleanDice = () => [];
 const getRawDice = () => [];
 export default defineStore(
   'dice',
@@ -36,7 +35,6 @@ export default defineStore(
 
     function reset():void {
       console.debug('Reset Dice');
-      rawDice.value = getCleanDice();
       rawDice.value = getRawDice();
     }
 

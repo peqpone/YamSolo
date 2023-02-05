@@ -106,7 +106,6 @@ function saveScore(value: number, scoreName: keyof Scores):void {
         <render-die
           :class="{ active: value !== undefined }"
           :die-value="index + 1"
-          :die-id="index"
         />
       </div>
     </div>

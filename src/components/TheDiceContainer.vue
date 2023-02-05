@@ -17,13 +17,12 @@ const toggleLock = (index:number) => {
 
 <template>
   <div class="dice-area">
-    <RenderDie
+    <render-die
       v-for="(die, index) in rawDice"
       :key="index"
-      :die-id="index"
       :die-value="die.value"
       :style="style()"
-      :class="{ selected: die.isLocked }"
+      :class="{ selected: die.isLocked, [`die-${index}`]: true }"
       @click="toggleLock(index)"
     />
   </div>

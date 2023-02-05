@@ -4,7 +4,6 @@ import useGameStore from '@/stores/game';
 import { computed } from 'vue';
 
 const props = defineProps<{
-  dieId: number
   dieValue: number
   forceTheme?: string
 }>();
@@ -16,7 +15,7 @@ const theme = computed(() => props.forceTheme || gameStore.game.theme);
 
 <template>
   <img
-    :alt="`${dieId.toString()}-${dieValue.toString()}`"
+    :alt="`${dieValue.toString()}`"
     :src="`/dice/${theme}/${dieValue}.svg`"
   />
 </template>

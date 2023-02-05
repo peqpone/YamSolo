@@ -30,7 +30,7 @@ describe('TheDiceContainer', () => {
       expect(wrapper.html()).toMatchSnapshot();
     });
     it('click on a die should lock it', async () => {
-      const die = wrapper.find('[dieid="0"]');
+      const die = wrapper.find('.die-0');
       await die.trigger('click');
       expect(diceStore.rawDice[0].isLocked).toBe(true);
     });

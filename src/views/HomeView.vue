@@ -28,7 +28,7 @@ const startGame = ():void => {
   display: grid;
   text-align: center;
   align-items: center;
-  grid: 1fr / 1fr;
+  grid: 6fr 1fr / 1fr;
 }
 #splash-screen-background {
   position: absolute;

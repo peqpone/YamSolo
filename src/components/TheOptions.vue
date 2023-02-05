@@ -17,6 +17,10 @@ const setTheme = (newTheme:string) => {
 
 <template>
   <div>
+    <render-die
+      class="die-preview"
+      :die-value="1"
+    />
     <a
       class="cta"
       @click="toggleOptions"
@@ -28,19 +32,23 @@ const setTheme = (newTheme:string) => {
       v-if="areOptionsVisible"
       class="options-container"
     >
-      <RenderDie
-        class="die-button"
+      <render-die
         v-for="(theme, index) in themes"
+        :class="`die-button theme-${theme}`"
         :key="index"
         @click="setTheme(theme)"
         :die-value="1"
-        :die-id="index"
         :force-theme="theme" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.die-preview {
+  display: block;
+  margin: 0 auto;
+  width: 50px;
+}
 .die-button {
   cursor: pointer;
   width: 30px;
