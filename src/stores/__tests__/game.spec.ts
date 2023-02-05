@@ -1,5 +1,5 @@
 import {
-  describe, it, expect, beforeEach,
+  describe, it, expect, beforeEach, vi, afterEach, beforeAll,
 } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import useScoresStore from '../scores';
@@ -8,12 +8,18 @@ import useGameStore from '../game';
 describe('store/game', () => {
   let scoresStore: ReturnType<typeof useScoresStore>;
   let gameStore: ReturnType<typeof useGameStore>;
-  beforeEach(() => {
+  beforeAll(() => {
     setActivePinia(createPinia());
     scoresStore = useScoresStore();
     gameStore = useGameStore();
+  });
+  beforeEach(() => {
     scoresStore.reset();
     gameStore.reset();
+    vi.spyOn(console, 'debug');
+  });
+  afterEach(() => {
+    console.debug.mockClear();
   });
   describe('initials store state', () => {
     it('Should have initial state', () => {
@@ -113,6 +119,25 @@ describe('store/game', () => {
         },
       });
       expect(gameStore.canRoll).toBe(false);
+    });
+  });
+
+  describe('saveTheme', () => {
+    it('Should save theme', () => {
+      const { game } = gameStore;
+
+      gameStore.saveTheme('someNewTheme');
+
+      expect(game.theme).toBe('someNewTheme');
+      expect(console.debug).toHaveBeenCalledWith('Use "someNewTheme" as theme');
+    });
+    it('Should not save theme if already set', () => {
+      const { game } = gameStore;
+
+      gameStore.saveTheme('someNewTheme');
+
+      expect(game.theme).toBe('someNewTheme');
+      expect(console.debug).toHaveBeenCalledWith('"someNewTheme" is already the chosen theme');
     });
   });
 });

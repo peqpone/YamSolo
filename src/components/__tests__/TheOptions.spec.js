@@ -28,5 +28,9 @@ describe('TheOptions', () => {
       await wrapper.find('.cta').trigger('click');
       expect(wrapper.html()).toMatchSnapshot();
     });
+    it('choosing a theme should save it to the store', async () => {
+      await wrapper.find('[dieid="0"]').trigger('click');
+      expect(gameStore.saveTheme).toHaveBeenCalledWith('classic');
+    });
   });
 });
