@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import reset from '@/stores/reset';
+import TheOptions from '@/components/TheOptions.vue';
 
 const router = useRouter();
 
@@ -16,7 +17,7 @@ const startGame = ():void => {
     <a @click="startGame" @keydown="startGame" class="button-play">
       <img src="../graphics/play.svg" alt="Start" />
     </a>
-    <div>options</div>
+    <TheOptions />
   </div>
   <div id="splash-screen-background" />
 </template>

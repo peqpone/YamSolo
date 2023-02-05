@@ -24,5 +24,13 @@ module.exports = {
     ],
     'unicorn/no-array-for-each': 'off',
     'unicorn/no-array-reduce': 'off',
+    'unicorn/prevent-abbreviations': [
+      'error',
+      {
+        'allowList': {
+          'props': true
+        }
+      }
+    ]
   },
 }

@@ -3,14 +3,15 @@
 import useGameStore from '@/stores/game';
 import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
   dieId: number
   dieValue: number
+  forceTheme?: string
 }>();
 
 const gameStore = useGameStore();
 
-const theme = computed(() => gameStore.game.theme);
+const theme = computed(() => props.forceTheme || gameStore.game.theme);
 </script>
 
 <template>

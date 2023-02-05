@@ -29,12 +29,22 @@ export default defineStore(
       game.value.currentAttempt = 0;
     }
     function saveTheme(newTheme:string) {
-      game.value.theme = newTheme;
+      if (newTheme === game.value.theme) {
+        console.debug(`"${newTheme}" is already the chosen theme`);
+      } else {
+        console.debug(`Use "${newTheme}" as a theme`);
+        game.value.theme = newTheme;
+      }
     }
 
     function reset():void {
-      console.debug('Reset Game');
-      game.value = getCleanState();
+      // console.debug('Reset Game');
+      // game.value = getCleanState();
+      // reset only currentAttempt, otherwise any chosen theme would be lost
+      // TODO fix this shit, either reset is not called before launching the game,
+      // TODO or getCleanState is aware of what to reset
+      console.debug('Reset Attempts');
+      resetAttempts();
     }
 
     return {
