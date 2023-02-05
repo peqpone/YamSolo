@@ -32,7 +32,7 @@ export default defineStore(
       if (newTheme === game.value.theme) {
         console.debug(`"${newTheme}" is already the chosen theme`);
       } else {
-        console.debug(`Use "${newTheme}" as a theme`);
+        console.debug(`Use "${newTheme}" as theme`);
         game.value.theme = newTheme;
       }
     }
