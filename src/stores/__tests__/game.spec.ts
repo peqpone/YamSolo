@@ -19,6 +19,7 @@ describe('store/game', () => {
     vi.spyOn(console, 'debug');
   });
   afterEach(() => {
+    // @ts-ignore
     console.debug.mockClear();
   });
   describe('initials store state', () => {
