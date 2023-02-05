@@ -35,6 +35,6 @@ jobs:
         server: '${{ secrets.SFTP_SERVER }}'
         password: ${{ secrets.SFTP_PASSWORD }}
         local_path: './dist/*'
-        remote_path: '/home/peqpeuo/yamsolo'
+        remote_path: '${{ secrets.SFTP_REMOTE_ROOT_PATH }}/yamsolo'
         delete_remote_files: true
         sftpArgs: '-o ConnectTimeout=5'
