@@ -1,0 +1,17 @@
+// Vitest Snapshot v1
+
+exports[`TheOptions > Integration test > should correctly mount initial state 1`] = `
+"<div data-v-481f20da=\\"\\"><a class=\\"cta\\" data-v-481f20da=\\"\\"> options </a>
+  <!--v-if-->
+</div>"
+`;
+
+exports[`TheOptions > Integration test > should correctly render theme selection 1`] = `
+"<div data-v-481f20da=\\"\\"><a class=\\"cta\\" data-v-481f20da=\\"\\"> options </a>
+  <div class=\\"options-container\\" data-v-481f20da=\\"\\">
+    <render-die-stub dievalue=\\"1\\" dieid=\\"0\\" forcetheme=\\"classic\\" class=\\"die-button\\" data-v-481f20da=\\"\\"></render-die-stub>
+    <render-die-stub dievalue=\\"1\\" dieid=\\"1\\" forcetheme=\\"design\\" class=\\"die-button\\" data-v-481f20da=\\"\\"></render-die-stub>
+    <render-die-stub dievalue=\\"1\\" dieid=\\"2\\" forcetheme=\\"numbers\\" class=\\"die-button\\" data-v-481f20da=\\"\\"></render-die-stub>
+  </div>
+</div>"
+`;

@@ -8,7 +8,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  check-only:
 
     runs-on: ubuntu-latest
 
@@ -26,7 +26,6 @@ jobs:
           cache: 'npm'
       - run: | 
           npm ci
-          npm run build
           npm run lint
-          npm run test:unit
           npm run test:coverage
+          npm run build
