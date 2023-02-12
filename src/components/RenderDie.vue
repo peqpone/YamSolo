@@ -22,6 +22,7 @@ const theme = computed(() => props.forceTheme || gameStore.game.theme);
 
 <style scoped>
 img {
+  transition: 0.3s;
   max-width: 16%;
   margin: 6%;
 }
