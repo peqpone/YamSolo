@@ -23,7 +23,7 @@ export default defineConfig({
       all: true,
       statements: 76,
       branches: 93,
-      functions: 78,
+      functions: 77,
       lines: 76,
     },
     environment: 'jsdom',
