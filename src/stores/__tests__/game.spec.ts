@@ -4,18 +4,22 @@ import {
 import { setActivePinia, createPinia } from 'pinia';
 import useScoresStore from '../scores';
 import useGameStore from '../game';
+import useDiceStore from '../dice';
 
 describe('store/game', () => {
   let scoresStore: ReturnType<typeof useScoresStore>;
   let gameStore: ReturnType<typeof useGameStore>;
+  let diceStore: ReturnType<typeof useDiceStore>;
   beforeAll(() => {
     setActivePinia(createPinia());
     scoresStore = useScoresStore();
     gameStore = useGameStore();
+    diceStore = useDiceStore();
   });
   beforeEach(() => {
     scoresStore.reset();
     gameStore.reset();
+    diceStore.reset();
     vi.spyOn(console, 'debug');
   });
   afterEach(() => {
@@ -118,6 +122,24 @@ describe('store/game', () => {
           largeStraight: 0,
           yams: 0,
         },
+      });
+      expect(gameStore.canRoll).toBe(false);
+    });
+    it('Should be true if no dice', () => {
+      diceStore.$patch({
+        rawDice: [],
+      });
+      expect(gameStore.canRoll).toBe(true);
+    });
+    it('Should be false if all dice are locked', () => {
+      diceStore.$patch({
+        rawDice: [
+          { isLocked: true, value: 2 },
+          { isLocked: true, value: 2 },
+          { isLocked: true, value: 2 },
+          { isLocked: true, value: 2 },
+          { isLocked: true, value: 2 },
+        ],
       });
       expect(gameStore.canRoll).toBe(false);
     });

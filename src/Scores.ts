@@ -93,13 +93,13 @@ export default class {
   }
 
   get getThreeOfAKind():undefined | number {
-    return Object.values(this.diceOccurrences).includes(3)
+    return Object.values(this.diceOccurrences).some((score) => score >= 3)
       ? this.diceSum
       : undefined;
   }
 
   get getFourOfAKind():undefined | number {
-    return Object.values(this.diceOccurrences).includes(4)
+    return Object.values(this.diceOccurrences).some((score) => score >= 4)
       ? this.diceSum
       : undefined;
   }

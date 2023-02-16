@@ -60,6 +60,7 @@ describe('Scores.ts', () => {
     it('Should return true if Four Of A Kind', () => {
       const scores = new Scores([4, 3, 4, 4, 4]);
       expect(scores.fourOfAKind).toBe(19);
+      expect(scores.threeOfAKind).toBe(19);
     });
   });
   describe('isFullHouse', () => {
@@ -80,6 +81,8 @@ describe('Scores.ts', () => {
     it('Should return true if Yams', () => {
       const scores = new Scores([4, 4, 4, 4, 4]);
       expect(scores.yams).toBe(50);
+      expect(scores.fourOfAKind).toBe(20);
+      expect(scores.threeOfAKind).toBe(20);
     });
   });
   describe('isSmallStraight', () => {

@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import useScoreStore from './scores';
+import useDiceStore from './dice';
 
 const getCleanState = () => ({
   currentAttempt: 0,
@@ -12,12 +13,19 @@ export default defineStore(
     const game = ref<Game>(getCleanState());
 
     const scoresStore = useScoreStore();
+    const diceStore = useDiceStore();
 
     const isGameFinished = computed(() => Object.values(scoresStore.scores)
       .every((value) => value !== undefined));
 
     const canRoll = computed(() => {
       if (isGameFinished.value) {
+        console.debug('Game is finished');
+        return false;
+      }
+      const { rawDice } = diceStore;
+      if (rawDice.length > 0 && rawDice.every((die) => die.isLocked)) {
+        console.debug('All dice are locked');
         return false;
       }
       return game.value.currentAttempt < 3;

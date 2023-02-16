@@ -13,23 +13,44 @@ const toggleLock = (index:number) => {
   diceStore.toggleLock(index);
 };
 
+const isLocked = (die:Die) => die.isLocked;
+
 </script>
 
 <template>
   <div class="dice-area">
-    <render-die
+    <template
       v-for="(die, index) in rawDice"
       :key="index"
-      :die-value="die.value"
-      :style="style()"
-      :class="{ selected: die.isLocked, [`die-${index}`]: true }"
-      @click="toggleLock(index)"
-    />
+    >
+      <render-die
+        v-if="!isLocked(die)"
+        :die-value="die.value"
+        :style="style()"
+        :class="`die-${index}`"
+        @click="toggleLock(index)"
+      />
+    </template>
+  </div>
+  <div class="locked-dice-area">
+    <template
+      v-for="(die, index) in rawDice"
+      :key="index"
+    >
+      <render-die
+        v-if="isLocked(die)"
+        :die-value="die.value"
+        class="selected`"
+        :class="`die-${index}`"
+        @click="toggleLock(index)"
+      />
+    </template>
   </div>
 </template>
 
 <style scoped lang="scss">
 .selected {
-  zoom: 0.2;
+  width: 15%;
+  margin: 3%;
 }
 </style>
