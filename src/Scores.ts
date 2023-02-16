@@ -105,8 +105,8 @@ export default class {
   }
 
   get getFullHouse():undefined | 25 {
-    return Object.values(this.diceOccurrences).includes(3)
-    && Object.values(this.diceOccurrences).includes(2)
+    return Object.values(this.diceOccurrences).some((score) => score >= 3)
+    && Object.values(this.diceOccurrences).some((score) => score >= 2)
       ? 25
       : undefined;
   }

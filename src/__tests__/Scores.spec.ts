@@ -71,6 +71,7 @@ describe('Scores.ts', () => {
     it('Should return true if Full House', () => {
       const scores = new Scores([4, 3, 4, 4, 3]);
       expect(scores.fullHouse).toBe(25);
+      expect(scores.threeOfAKind).toBe(18);
     });
   });
   describe('isYams', () => {
@@ -81,6 +82,7 @@ describe('Scores.ts', () => {
     it('Should return true if Yams', () => {
       const scores = new Scores([4, 4, 4, 4, 4]);
       expect(scores.yams).toBe(50);
+      expect(scores.fullHouse).toBe(25);
       expect(scores.fourOfAKind).toBe(20);
       expect(scores.threeOfAKind).toBe(20);
     });
