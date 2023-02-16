@@ -40,7 +40,7 @@ const isLocked = (die:Die) => die.isLocked;
       <render-die
         v-if="isLocked(die)"
         :die-value="die.value"
-        class="selected`"
+        class="selected"
         :class="`die-${index}`"
         @click="toggleLock(index)"
       />
