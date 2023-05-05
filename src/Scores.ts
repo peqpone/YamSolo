@@ -105,8 +105,9 @@ export default class {
   }
 
   get getFullHouse():undefined | 25 {
-    return Object.values(this.diceOccurrences).some((score) => score >= 3)
-    && Object.values(this.diceOccurrences).some((score) => score >= 2)
+    const diceValues = Object.values(this.diceOccurrences);
+    return (diceValues.includes(3) && diceValues.includes(2))
+        || this.getYams // yeah, a yams is after all a fullHouse
       ? 25
       : undefined;
   }

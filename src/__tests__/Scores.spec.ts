@@ -65,7 +65,7 @@ describe('Scores.ts', () => {
   });
   describe('isFullHouse', () => {
     it('Should return false if not Full House', () => {
-      const scores = new Scores([1, 3, 6, 4, 4]);
+      const scores = new Scores([4, 3, 6, 4, 4]);
       expect(scores.fullHouse).toBe(undefined);
     });
     it('Should return true if Full House', () => {
