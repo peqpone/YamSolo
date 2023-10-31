@@ -42,6 +42,7 @@ export default class {
     this.diceSum = this.addDice;
     this.chance = this.getChance;
     this.diceOccurrences = this.countOccurrences;
+
     this.die1 = this.getTotal(1);
     this.die2 = this.getTotal(2);
     this.die3 = this.getTotal(3);
