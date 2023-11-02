@@ -6,6 +6,8 @@ name: Build, lint, tsc and test
 on:
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
 
 jobs:
   check-only:
