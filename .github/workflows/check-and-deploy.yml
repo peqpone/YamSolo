@@ -3,9 +3,9 @@
 
 name: Check and deploy
 
-on:
-  push:
-    branches: [ "main" ]
+on: workflow_dispatch
+#  push:
+#    branches: [ "main" ]
 
 jobs:
   check-build-and-deploy:
