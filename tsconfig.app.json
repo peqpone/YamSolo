@@ -1,5 +1,5 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "env.d.ts",
     "types/*.d.ts",
@@ -11,7 +11,7 @@
   ],
   "compilerOptions": {
     "composite": true,
-    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
