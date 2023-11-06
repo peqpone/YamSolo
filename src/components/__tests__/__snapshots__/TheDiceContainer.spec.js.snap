@@ -1,14 +1,14 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TheDiceContainer > Integration test > should correctly mount initial state 1`] = `
-"<div data-v-3bbddecd=\\"\\" class=\\"dice-area\\">
-  <render-die-stub data-v-3bbddecd=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-0\\"></render-die-stub>
-  <render-die-stub data-v-3bbddecd=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-1\\"></render-die-stub>
-  <render-die-stub data-v-3bbddecd=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-2\\"></render-die-stub>
-  <render-die-stub data-v-3bbddecd=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-3\\"></render-die-stub>
-  <render-die-stub data-v-3bbddecd=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-4\\"></render-die-stub>
+"<div data-v-1c9fb7f4=\\"\\" class=\\"dice-area\\">
+  <render-die-stub data-v-1c9fb7f4=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-0\\"></render-die-stub>
+  <render-die-stub data-v-1c9fb7f4=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-1\\"></render-die-stub>
+  <render-die-stub data-v-1c9fb7f4=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-2\\"></render-die-stub>
+  <render-die-stub data-v-1c9fb7f4=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-3\\"></render-die-stub>
+  <render-die-stub data-v-1c9fb7f4=\\"\\" dievalue=\\"1\\" style=\\"transform: rotate(10deg);\\" class=\\"die-4\\"></render-die-stub>
 </div>
-<div data-v-3bbddecd=\\"\\" class=\\"locked-dice-area\\">
+<div data-v-1c9fb7f4=\\"\\" class=\\"locked-dice-area\\">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
