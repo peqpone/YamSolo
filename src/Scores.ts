@@ -121,16 +121,14 @@ export default class {
 
   get getSmallStraight():undefined | 30 {
     const isSmallStraight = this.lookForStraights;
-    return isSmallStraight.every(Boolean)
-        && isSmallStraight.length >= 4
+    return isSmallStraight.filter(Boolean).length >= 4
       ? 30
       : undefined;
   }
 
   get getLargeStraight():undefined | 40 {
     const isLargeStraight = this.lookForStraights;
-    return isLargeStraight.every(Boolean)
-        && isLargeStraight.length === 5
+    return isLargeStraight.filter(Boolean).length === 5
       ? 40
       : undefined;
   }
