@@ -2,18 +2,18 @@
 
 exports[`TheOptions > Integration test > should correctly mount initial state 1`] = `
 "<div data-v-0f1eeb9a=\\"\\">
-  <render-die-stub dievalue=\\"1\\" class=\\"die-preview\\" data-v-0f1eeb9a=\\"\\"></render-die-stub><a class=\\"cta\\" data-v-0f1eeb9a=\\"\\"> options </a>
+  <render-die-stub data-v-0f1eeb9a=\\"\\" dievalue=\\"1\\" class=\\"die-preview\\"></render-die-stub><a data-v-0f1eeb9a=\\"\\" class=\\"cta\\"> options </a>
   <!--v-if-->
 </div>"
 `;
 
 exports[`TheOptions > Integration test > should correctly render theme selection 1`] = `
 "<div data-v-0f1eeb9a=\\"\\">
-  <render-die-stub dievalue=\\"1\\" class=\\"die-preview\\" data-v-0f1eeb9a=\\"\\"></render-die-stub><a class=\\"cta\\" data-v-0f1eeb9a=\\"\\"> options </a>
-  <div class=\\"options-container\\" data-v-0f1eeb9a=\\"\\">
-    <render-die-stub dievalue=\\"1\\" forcetheme=\\"classic\\" class=\\"die-button theme-classic\\" data-v-0f1eeb9a=\\"\\"></render-die-stub>
-    <render-die-stub dievalue=\\"1\\" forcetheme=\\"design\\" class=\\"die-button theme-design\\" data-v-0f1eeb9a=\\"\\"></render-die-stub>
-    <render-die-stub dievalue=\\"1\\" forcetheme=\\"numbers\\" class=\\"die-button theme-numbers\\" data-v-0f1eeb9a=\\"\\"></render-die-stub>
+  <render-die-stub data-v-0f1eeb9a=\\"\\" dievalue=\\"1\\" class=\\"die-preview\\"></render-die-stub><a data-v-0f1eeb9a=\\"\\" class=\\"cta\\"> options </a>
+  <div data-v-0f1eeb9a=\\"\\" class=\\"options-container\\">
+    <render-die-stub data-v-0f1eeb9a=\\"\\" dievalue=\\"1\\" forcetheme=\\"classic\\" class=\\"die-button theme-classic\\"></render-die-stub>
+    <render-die-stub data-v-0f1eeb9a=\\"\\" dievalue=\\"1\\" forcetheme=\\"design\\" class=\\"die-button theme-design\\"></render-die-stub>
+    <render-die-stub data-v-0f1eeb9a=\\"\\" dievalue=\\"1\\" forcetheme=\\"numbers\\" class=\\"die-button theme-numbers\\"></render-die-stub>
   </div>
 </div>"
 `;

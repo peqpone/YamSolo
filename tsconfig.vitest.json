@@ -3,7 +3,7 @@
   "exclude": [],
   "compilerOptions": {
     "composite": true,
-    "lib": ["esnext"],
+    "lib": [],
     "types": ["node", "jsdom", "vitest/globals"]
   }
 }
