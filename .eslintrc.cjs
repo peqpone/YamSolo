@@ -10,29 +10,28 @@ module.exports = {
     '@vue/eslint-config-typescript',
     // TODO : uncomment when upgrading dependencies
     //'@vue/eslint-config-airbnb-with-typescript',
-    //'plugin:unicorn/recommended',
+    'plugin:unicorn/recommended',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
   },
   rules: {
     'no-console': 'off',
-    // TODO : uncomment when upgrading dependencies
-    // 'unicorn/filename-case': [
-    //   'error',
-    //   {
-    //     'cases': { 'kebabCase': true, 'pascalCase': true },
-    //   }
-    // ],
-    // 'unicorn/no-array-for-each': 'off',
-    // 'unicorn/no-array-reduce': 'off',
-    // 'unicorn/prevent-abbreviations': [
-    //   'error',
-    //   {
-    //     'allowList': {
-    //       'props': true
-    //     }
-    //   }
-    // ]
+    'unicorn/filename-case': [
+      'error',
+      {
+        'cases': { 'kebabCase': true, 'pascalCase': true },
+      }
+    ],
+    'unicorn/no-array-for-each': 'off',
+    'unicorn/no-array-reduce': 'off',
+    'unicorn/prevent-abbreviations': [
+      'error',
+      {
+        'allowList': {
+          'props': true
+        }
+      }
+    ]
   },
 }
