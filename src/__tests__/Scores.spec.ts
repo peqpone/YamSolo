@@ -96,6 +96,14 @@ describe('Scores.ts', () => {
       const scores = new Scores([4, 2, 5, 5, 3]);
       expect(scores.smallStraight).toBe(30);
     });
+    it('Should return true if Small Straight (non-regression - all dice are different)', () => {
+      const scores = new Scores([4, 2, 1, 6, 3]);
+      expect(scores.smallStraight).toBe(30);
+    });
+    it('Should return true even if Large Straight', () => {
+      const scores = new Scores([4, 2, 1, 5, 3]);
+      expect(scores.smallStraight).toBe(30);
+    });
   });
   describe('isLargeStraight', () => {
     it('Should return false if not Large Straight', () => {
