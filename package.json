@@ -17,7 +17,7 @@
     "lodash.clonedeep": "^4.5.0",
     "pinia": "^2.0.28",
     "pinia-plugin-persistedstate": "^3.2.0",
-    "sass": "^1.57.1",
+    "sass": "^1.69.5",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
