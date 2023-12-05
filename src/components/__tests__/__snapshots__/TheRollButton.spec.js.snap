@@ -1,5 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TheRollButton > Integration test > should correctly mount initial state 1`] = `"<div class=\\"main-cta\\"><a class=\\"button\\"> Roll </a></div>"`;
+exports[`TheRollButton > Integration test > should correctly mount initial state 1`] = `"<div class="main-cta"><a class="button"> Roll </a></div>"`;
 
-exports[`TheRollButton > Integration test > should disable the button 1`] = `"<div class=\\"main-cta\\"><a class=\\"button disabled\\"> Roll </a></div>"`;
+exports[`TheRollButton > Integration test > should disable the button 1`] = `"<div class="main-cta"><a class="button disabled"> Roll </a></div>"`;

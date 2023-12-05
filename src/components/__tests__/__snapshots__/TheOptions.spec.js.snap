@@ -1,19 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TheOptions > Integration test > should correctly mount initial state 1`] = `
-"<div data-v-481f20da=\\"\\">
-  <render-die-stub data-v-481f20da=\\"\\" dievalue=\\"1\\" class=\\"die-preview\\"></render-die-stub><a data-v-481f20da=\\"\\" class=\\"cta\\"> options </a>
+"<div data-v-481f20da="">
+  <render-die-stub data-v-481f20da="" dievalue="1" class="die-preview"></render-die-stub><a data-v-481f20da="" class="cta"> options </a>
   <!--v-if-->
 </div>"
 `;
 
 exports[`TheOptions > Integration test > should correctly render theme selection 1`] = `
-"<div data-v-481f20da=\\"\\">
-  <render-die-stub data-v-481f20da=\\"\\" dievalue=\\"1\\" class=\\"die-preview\\"></render-die-stub><a data-v-481f20da=\\"\\" class=\\"cta\\"> options </a>
-  <div data-v-481f20da=\\"\\" class=\\"options-container\\">
-    <render-die-stub data-v-481f20da=\\"\\" dievalue=\\"1\\" forcetheme=\\"classic\\" class=\\"die-button theme-classic\\"></render-die-stub>
-    <render-die-stub data-v-481f20da=\\"\\" dievalue=\\"1\\" forcetheme=\\"design\\" class=\\"die-button theme-design\\"></render-die-stub>
-    <render-die-stub data-v-481f20da=\\"\\" dievalue=\\"1\\" forcetheme=\\"numbers\\" class=\\"die-button theme-numbers\\"></render-die-stub>
+"<div data-v-481f20da="">
+  <render-die-stub data-v-481f20da="" dievalue="1" class="die-preview"></render-die-stub><a data-v-481f20da="" class="cta"> options </a>
+  <div data-v-481f20da="" class="options-container">
+    <render-die-stub data-v-481f20da="" dievalue="1" forcetheme="classic" class="die-button theme-classic"></render-die-stub>
+    <render-die-stub data-v-481f20da="" dievalue="1" forcetheme="design" class="die-button theme-design"></render-die-stub>
+    <render-die-stub data-v-481f20da="" dievalue="1" forcetheme="numbers" class="die-button theme-numbers"></render-die-stub>
   </div>
 </div>"
 `;
